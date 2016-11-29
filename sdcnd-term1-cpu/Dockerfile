@@ -11,13 +11,13 @@ ENV HOME /home/$USER
 # Basic setups
 EXPOSE 8888
 RUN apt-get -y update && \
-    apt-get install -y wget python-pip python-dev
+    apt-get install -y wget python-pip python-dev libgtk2.0-0
 
 # Create local user
 RUN useradd -m -s /bin/bash -N -u $USERGROUP $USER
 
 # Install conda
-RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -q -O /tmp/miniconda.sh && \
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -q -O /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -p $CONDA_DIR && \
     rm /tmp/miniconda.sh && \
     chown $USER $CONDA_DIR -R
@@ -27,7 +27,8 @@ USER $USER
 ENV PATH $CONDA_DIR/bin:$PATH
 WORKDIR $HOME
 
-# prepare default python 2.7 environment
+# prepare default python 3.5 environment
 RUN pip install --upgrade pip && \
-    pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0-cp27-none-linux_x86_64.whl && \
-    pip install h5py jupyter keras matplotlib pandas   
+    pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.0rc0-cp35-cp35m-linux_x86_64.whl && \
+    pip install h5py jupyter keras matplotlib pandas && \
+    conda install -y -c menpo opencv3=3.1.0
