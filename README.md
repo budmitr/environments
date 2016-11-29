@@ -31,9 +31,11 @@ Basic setup for term1 of udacity self-driving car nanodegree (GPU version)
 * jupyter + pandas + keras (TF and theano) + opencv
 
 Build from Dockerfile (optional)
+
 `nvidia-docker build -t budmitr/sdcnd-term1-gpu environments/sdcnd-term1-gpu`
 
 Start jupyter notebook and link to local folder
+
 `nvidia-docker run -d -p 8888:8888 -u dockeruser -v ~/sdcnd:/home/dockeruser/ budmitr/sdcnd-term1-gpu sh -c "jupyter notebook --ip=* --no-browser"`
 
 Go to http://localhost:8888
