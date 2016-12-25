@@ -11,7 +11,7 @@ ENV HOME /home/$USER
 # Basic setups
 EXPOSE 8888
 RUN apt-get -y update && \
-    apt-get install -y wget python-pip python-dev libgtk2.0-0
+    apt-get install -y wget python-pip python-dev libgtk2.0-0 unzip
 
 # Create local user
 RUN useradd -m -s /bin/bash -N -u $USERGROUP $USER
@@ -29,6 +29,7 @@ WORKDIR $HOME
 
 # prepare default python 3.5 environment
 RUN pip install --upgrade pip && \
-    pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.0rc0-cp35-cp35m-linux_x86_64.whl && \
-    pip install h5py jupyter keras matplotlib moviepy pandas pillow && \
-    conda install -y -c menpo opencv3=3.1.0
+    pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.0-cp35-cp35m-linux_x86_64.whl && \
+    pip install h5py jupyter keras matplotlib moviepy pandas pillow sklearn && \
+    conda install -y -c menpo opencv3=3.1.0 && \
+    conda install -y seaborn flask-socketio eventlet
