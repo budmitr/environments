@@ -21,6 +21,13 @@ Start jupyter notebook and link to local folder
 
 Go to http://localhost:8888
 
+For project 3 use (suppose that your `drive.py` and `model.json` are inside `~/sdcnd/behavioral-cloning`:
+
+`docker run -it -p 4567:4567 -v ~/sdcnd/behavioral-cloning:/home/dockeruser budmitr/sdcnd-term1-cpu /bin/bash`
+
+Then just launch `python drive.py model.json` from your docker terminal
+
+
 ## sdcnd-term1-gpu
 
 Basic setup for term1 of udacity self-driving car nanodegree (GPU version)
